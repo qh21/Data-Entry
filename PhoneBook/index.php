@@ -31,13 +31,13 @@
     <title>PhoneBook</title>
   </head>
   <body>
-    <h1 align="center">Welcome to PhoneBook Project</h1>
+    <h1 align="center">Welcome to PhoneBook</h1>
 
     <fieldset class="field_set">
       <legend style="font-size: large">
         Enter username and password to login
       </legend>
-      <form action="main.php" method="post">
+      <form action="index.php" method="post">
         <table align="center">
           <tr>
             <th>Username:</th>
@@ -62,9 +62,19 @@
       </table>
     </fieldset>
 
-  </body>
-</html>
+   
 <?php  
-session_start();
-session_destroy();
+if ($_SERVER["REQUEST_METHOD"] == "POST")
+{
+  session_start();
+
+  $_SESSION["userName"] = $_POST["userName"];
+  $_SESSION["pwd"] = $_POST["pwd"];
+
+  header('Location: main.php');
+  exit;
+}
+
 ?>
+ </body>
+ </html>
